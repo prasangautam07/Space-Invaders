@@ -16,10 +16,10 @@ namespace Display
 
 	sf::RenderWindow& getWindow();
 
-	const std::string TITLE = "Space Shooter";
+	const std::string TITLE = "Space Invaders";
 
 #ifdef DEBUG_ON
-	constexpr int WIDTH = 1024;
-	constexpr int HEIGHT = 768;
+	constexpr int WIDTH = 1900;
+	constexpr int HEIGHT = 1080;
 #endif
 }

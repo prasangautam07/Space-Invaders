@@ -12,7 +12,7 @@ GameObjects::Enemy::Enemy(sf::Texture const* texture, Utils::Resources const* re
 	m_resourceManager(resourceManager)
 {
 	this->m_sprite.setTexture(*this->m_p_Texture);
-	this->m_sprite.setScale(1.5f, 1.5f);
+	this->m_sprite.setScale(0.4f, 0.4f);
 	this->m_sprite.setPosition(position);
 
 	this->m_healthBar.setSize(sf::Vector2f(50.f * 1.5f, 2.f));
@@ -71,21 +71,23 @@ void GameObjects::Enemy::Explode()
 	this->exploding = true;
 }
 
-
 void GameObjects::Enemy::initAnimationFrames()
 {
-	//move animation forward
-	this->m_moveAnimation.addFrame(sf::IntRect(0, 0, 50, 50), .1f);
-	this->m_moveAnimation.addFrame(sf::IntRect(50, 0, 50, 50), .1f);
-	this->m_moveAnimation.addFrame(sf::IntRect(100, 0, 50, 50), .1f);
-	this->m_moveAnimation.addFrame(sf::IntRect(150, 0, 50, 50), .1f);
-	this->m_moveAnimation.addFrame(sf::IntRect(200, 0, 50, 50), .1f);
+	
+	// Move animation forward
+	this->m_moveAnimation.addFrame(sf::IntRect(0, 0, 577, 433), 0.f); // Frame 1
+	this->m_moveAnimation.addFrame(sf::IntRect(577, 0, 577, 433), 0.f); // Frame 2
+	this->m_moveAnimation.addFrame(sf::IntRect(1154, 0, 577, 433), 0.f); // Frame 3
+	this->m_moveAnimation.addFrame(sf::IntRect(1731, 0, 577, 433), 0.f); // Frame 4
+	this->m_moveAnimation.addFrame(sf::IntRect(2308, 0, 577, 433), 0.f); // Frame 5
 
-	//move animation backward
-	this->m_moveAnimation.addFrame(sf::IntRect(150, 0, 50, 50), .1f);
-	this->m_moveAnimation.addFrame(sf::IntRect(100, 0, 50, 50), .1f);
-	this->m_moveAnimation.addFrame(sf::IntRect(50, 0, 50, 50), .1f);
+	// Move animation backward
+	this->m_moveAnimation.addFrame(sf::IntRect(1731, 0, 577, 433), 0.f); // Frame 6
+	this->m_moveAnimation.addFrame(sf::IntRect(1154, 0, 577, 433), 0.f); // Frame 7
+	this->m_moveAnimation.addFrame(sf::IntRect(577, 0, 577, 433), 0.f); // Frame 8
 
-	//death animation
-	this->m_deathAnimation.addFrame(sf::IntRect(0, 50, 50, 50), 0.f);
+	// Death animation
+	this->m_deathAnimation.addFrame(sf::IntRect(0, 0, 0, 0), 0.f); // Frame 9
 }
+
+
