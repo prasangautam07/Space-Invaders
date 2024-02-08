@@ -12,7 +12,7 @@ GameObjects::Enemy::Enemy(sf::Texture const* texture, Utils::Resources const* re
 	m_resourceManager(resourceManager)
 {
 	this->m_sprite.setTexture(*this->m_p_Texture);
-	this->m_sprite.setScale(0.4f, 0.4f);
+	this->m_sprite.setScale(1.75f, 1.75f);
 	this->m_sprite.setPosition(position);
 
 	this->m_healthBar.setSize(sf::Vector2f(50.f * 1.5f, 2.f));
@@ -40,7 +40,7 @@ void GameObjects::Enemy::Update(float const& dt)
 	sf::Vector2f pos(this->direction.x * this->speed * dt * 60.f, this->direction.y * this->speed * dt * 60.f);
 	this->m_sprite.move(pos);
 
-	this->m_healthBar.setPosition(this->m_sprite.getPosition().x, this->m_sprite.getPosition().y + 15.f);
+	this->m_healthBar.setPosition(this->m_sprite.getPosition().x+12.f, this->m_sprite.getPosition().y + 11.f);
 }
 
 void GameObjects::Enemy::Draw(sf::RenderTarget& target) const
@@ -73,21 +73,20 @@ void GameObjects::Enemy::Explode()
 
 void GameObjects::Enemy::initAnimationFrames()
 {
-	
-	// Move animation forward
-	this->m_moveAnimation.addFrame(sf::IntRect(0, 0, 577, 433), 0.f); // Frame 1
-	this->m_moveAnimation.addFrame(sf::IntRect(577, 0, 577, 433), 0.f); // Frame 2
-	this->m_moveAnimation.addFrame(sf::IntRect(1154, 0, 577, 433), 0.f); // Frame 3
-	this->m_moveAnimation.addFrame(sf::IntRect(1731, 0, 577, 433), 0.f); // Frame 4
-	this->m_moveAnimation.addFrame(sf::IntRect(2308, 0, 577, 433), 0.f); // Frame 5
-
-	// Move animation backward
-	this->m_moveAnimation.addFrame(sf::IntRect(1731, 0, 577, 433), 0.f); // Frame 6
-	this->m_moveAnimation.addFrame(sf::IntRect(1154, 0, 577, 433), 0.f); // Frame 7
-	this->m_moveAnimation.addFrame(sf::IntRect(577, 0, 577, 433), 0.f); // Frame 8
+	this->m_moveAnimation.addFrame(sf::IntRect(0, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
+	this->m_moveAnimation.addFrame(sf::IntRect(64, 0, 64, 64), 0.f);
 
 	// Death animation
-	this->m_deathAnimation.addFrame(sf::IntRect(0, 0, 0, 0), 0.f); // Frame 9
+	this->m_deathAnimation.addFrame(sf::IntRect(0, 0, 0, 0), 0.f); 
+
+
 }
 
 

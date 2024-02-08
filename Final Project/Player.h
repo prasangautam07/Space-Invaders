@@ -74,6 +74,6 @@ namespace GameObjects
 		std::deque<Bullet> m_bullets;
 		std::queue<sf::Sound> m_bulletSounds;
 
-		void SpawnBullet(); //daha sonra bulletType parametresi eklenerek ozellestirilebilir.
+		void SpawnBullet();
 	};
 }

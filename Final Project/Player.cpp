@@ -20,7 +20,7 @@ GameObjects::Player::Player(sf::Texture const& texture, Utils::Resources const& 
 	m_resources(resourceManager),
 	m_texture(texture)
 {
-	//player icin verilen texture'i uygula
+	
 	this->m_sprite.setTexture(this->m_texture);
 	this->m_sprite.setScale(this->scaleX, this->scaleY);
 

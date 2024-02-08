@@ -8,17 +8,17 @@ State::GameOver::GameOver(Application& application, int playerScore) :
 	m_playerScore(playerScore)
 {
 	this->m_gameOverText.setFont(this->getFont(Shared::FontId::F_UI));
-	this->m_gameOverText.setFillColor(sf::Color::Yellow);
+	this->m_gameOverText.setFillColor(sf::Color::Red);
 	this->m_gameOverText.setCharacterSize(30);
 	this->m_gameOverText.setString("GAME OVER!");
 
 	this->m_playerScoreText.setFont(this->getFont(Shared::FontId::F_UI));
-	this->m_playerScoreText.setFillColor(sf::Color::Yellow);
+	this->m_playerScoreText.setFillColor(sf::Color::Red);
 	this->m_playerScoreText.setCharacterSize(30);
 	this->m_playerScoreText.setString("SCORE: " + std::to_string(playerScore));
 
 	this->m_newGameText.setFont(this->getFont(Shared::FontId::F_UI));
-	this->m_newGameText.setFillColor(sf::Color::Yellow);
+	this->m_newGameText.setFillColor(sf::Color::Red);
 	this->m_newGameText.setCharacterSize(25);
 	this->m_newGameText.setString("Press 'N' to start new game");
 }

@@ -7,10 +7,10 @@ State::Playing::Playing(Application& application) :
 	GameState(application),
 	maxStars(200),
 	maxEnemy(50),
-	currentEnemyLimit(4),
-	enemySpawnInterval(4.f),
+	currentEnemyLimit(6),
+	enemySpawnInterval(3.f),
 	enemySpawnIntervalMin(1.5f),
-	difficultyIncreaseInterval(25.f),
+	difficultyIncreaseInterval(10.f),
 	gameOver(false),
 	m_ui(this->getFont(Shared::FontId::F_UI))
 {
@@ -122,7 +122,7 @@ void State::Playing::SpawnEnemy()
 	{
 		float minX = static_cast<float>(Display::getWindow().getSize().x);
 		float maxX = static_cast<float>(Display::getWindow().getSize().x) * 2.f;
-		float maxY = static_cast<float>(Display::getWindow().getSize().y) - 90.f;
+		float maxY = static_cast<float>(Display::getWindow().getSize().y) - 110.f;
 
 		float xPos = this->rng.getFloat(minX, maxX);
 		float yPos = this->rng.getFloat(55.f, maxY);

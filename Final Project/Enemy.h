@@ -12,7 +12,7 @@ namespace GameObjects
 		explicit Enemy(
 			sf::Texture const* texture,
 			Utils::Resources const* resourceManager,
-			sf::Vector2f position, float speed = 15.f);
+			sf::Vector2f position, float speed = 25.f);
 
 		~Enemy();
 

@@ -82,7 +82,7 @@ void State::Menu::FillBackground()
 {
 	float maxX = static_cast<float>(Display::getWindow().getSize().x);
 	float maxY = static_cast<float>(Display::getWindow().getSize().y);
-
+	//creating star in background 
 	for (unsigned i = this->stars.size(); i < this->maxStars; i++)
 	{
 		sf::CircleShape star(this->rng.getFloat(0.3f, 1.5f));
