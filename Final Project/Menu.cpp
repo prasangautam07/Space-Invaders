@@ -15,7 +15,7 @@ State::Menu::Menu(Application& application) :
 	this->FillBackground();
 
 	//Create text
-	sf::Color textColor = sf::Color::Yellow;
+	sf::Color textColor = sf::Color::Red;
 	textColor.a = 0;
 
 	this->m_menuText.setFont(this->getFont(Shared::FontId::F_UI));

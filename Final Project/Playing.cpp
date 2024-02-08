@@ -242,9 +242,6 @@ void State::Playing::ClearObjects()
 				this->m_p_player->TakeDamage(1);
 			}
 
-			//vector::erase kullanmiyoruz cunku erase() vector degerlerini kopyaliyor.
-			//kopyalanan enemy degerleri de o sirada her hangi bir enemy sound playing
-			//durumunda sesi erken kesiyor.
 			std::swap(*it, this->enemies.back());
 			this->enemies.pop_back();
 			break;
