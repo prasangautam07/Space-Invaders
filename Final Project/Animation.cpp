@@ -1,4 +1,4 @@
-//#include "Animation.h"
+#include "Animation.h"
 
 Utils::Animation::Animation() : m_CurrentFrame(0)
 {
