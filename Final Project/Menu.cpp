@@ -20,7 +20,22 @@ State::Menu::Menu(Application& application) :
 
 	this->m_menuText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_menuText.setFillColor(textColor);
-	this->m_menuText.setString("PRESS 'spacebar' TO START");
+	this->m_menuText.setString("\t\t\t\t\bPRESS\n");
+
+	std::string additionalText1 = "UP KEY-------->MOVE UP";
+	std::string additionalText2 = "DOWN KEY------>MOVE DOWN";
+	std::string additionalText3 = "RIGHT KEY----->MOVE FORWARD";
+	std::string additionalText4 = "LEFT KEY------>MOVE BACKWARD";
+	std::string additionalText5 = "SPACE KEY----->TO FIRE BULLETS";
+	std::string additionalText6 = "'S' KEY----->TO START GAME";
+
+	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText1);
+	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText2);
+	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText3);
+	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText4);
+	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText5);
+	this->m_menuText.setString(this->m_menuText.getString() + "\n\n" + additionalText6);
+
 	this->m_menuText.setPosition(Display::getWindow().getSize().x / 2.f - this->m_menuText.getGlobalBounds().width / 2.f, Display::getWindow().getSize().y / 2.f - 50.f);
 
 	this->animationClock.restart();
@@ -33,7 +48,7 @@ State::Menu::~Menu()
 
 void State::Menu::input()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S ))
 	{
 		this->m_p_application->changeState(std::make_unique<Playing>(*this->m_p_application));
 	}
@@ -50,12 +65,11 @@ void State::Menu::update(const float dt)
 
 	//Update player
 	this->m_p_player->Update(dt, Display::getWindow().getSize());
-
 	//Animate text
-	if (this->animationClock.getElapsedTime().asSeconds() >= .1f)
+	if (this->animationClock.getElapsedTime().asSeconds() >= 0.1f)
 	{
 		auto color = this->m_menuText.getFillColor();
-		color.a += 35;
+		color.a = 3500;
 
 		this->m_menuText.setFillColor(color);
 		this->animationClock.restart();
