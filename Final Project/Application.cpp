@@ -1,22 +1,12 @@
 #include "Application.h"
 #include "Display.h"
-
-//#ifdef DEBUG_ON
 #include "Menu.h"
-//#else
 #include "Splash.h"
-//#endif
 
 Application::Application()
 {
 	Display::init();
-
-//#ifdef DEBUG_ON
-	//this->pushState(std::make_unique<State::Menu>(*this));
-//#else
-	//Game starts with splash screen.
 	this->pushState(std::make_unique<State::Splash>(*this));
-//#endif
 }
 
 Application::~Application()

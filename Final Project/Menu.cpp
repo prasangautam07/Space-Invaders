@@ -20,14 +20,14 @@ State::Menu::Menu(Application& application) :
 
 	this->m_menuText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_menuText.setFillColor(textColor);
-	this->m_menuText.setString("\t\t\t\t\bPRESS\n");
+	this->m_menuText.setString("\t\t\t\tPRESS\n");
 
-	std::string additionalText1 = "UP KEY-------->MOVE UP";
-	std::string additionalText2 = "DOWN KEY------>MOVE DOWN";
-	std::string additionalText3 = "RIGHT KEY----->MOVE FORWARD";
-	std::string additionalText4 = "LEFT KEY------>MOVE BACKWARD";
+	std::string additionalText1 = "UP KEY-------->TO MOVE UP";
+	std::string additionalText2 = "DOWN KEY------>TO MOVE DOWN";
+	std::string additionalText3 = "RIGHT KEY----->TO MOVE FORWARD";
+	std::string additionalText4 = "LEFT KEY------>TO MOVE BACKWARD";
 	std::string additionalText5 = "SPACE KEY----->TO FIRE BULLETS";
-	std::string additionalText6 = "'S' KEY----->TO START GAME";
+	std::string additionalText6 = "'S' KEY------->TO START GAME";
 
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText1);
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText2);

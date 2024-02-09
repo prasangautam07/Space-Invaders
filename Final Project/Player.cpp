@@ -1,5 +1,6 @@
 #include "Player.h"
 
+
 GameObjects::Player::Player(sf::Texture const& texture, Utils::Resources const& resourceManager) :
 	hp(100),
 	hpMax(100),
@@ -191,10 +192,10 @@ void GameObjects::Player::TakeDamage(int amount)
 	float hpSize = (static_cast<float>(this->hp) / static_cast<float>(this->hpMax)) * this->m_sprite.getGlobalBounds().width;
 	this->m_healthBar.setSize(sf::Vector2f(hpSize, 2.f));
 }
-
 void GameObjects::Player::Destroy()
 {
 	this->m_playerDeathSound.play();
+
 }
 
 
