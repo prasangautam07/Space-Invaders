@@ -8,7 +8,7 @@ namespace State
 	class GameOver : public GameState
 	{
 	public:
-		explicit GameOver(Application& application, int playerScore);
+		explicit GameOver(Application& application, int playerScore,int player2Score);
 		~GameOver();
 
 		void input() override;
@@ -21,5 +21,9 @@ namespace State
 		sf::Text m_gameOverText;
 		sf::Text m_playerScoreText;
 		sf::Text m_newGameText;
+
+		int m_player2Score;
+
+		sf::Text m_player2ScoreText;
 	};
 }

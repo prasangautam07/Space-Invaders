@@ -17,6 +17,8 @@ namespace State
 
 		void input() override;
 		void update(const float dt) override;
+
+
 		void draw() override;
 
 	private:
@@ -35,6 +37,9 @@ namespace State
 
 		GameObjects::UI m_ui;
 		GameObjects::Player* m_p_player;
+
+		GameObjects::UI m_ui2;
+		GameObjects::Player2* m_p_player2;
 
 		std::vector<GameObjects::Enemy> enemies;
 		std::vector<GameObjects::Enemy> enemyGCList;

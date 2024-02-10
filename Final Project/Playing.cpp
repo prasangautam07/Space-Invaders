@@ -12,11 +12,17 @@ State::Playing::Playing(Application& application) :
 	enemySpawnIntervalMin(1.5f),
 	difficultyIncreaseInterval(10.f),
 	gameOver(false),
-	m_ui(this->getFont(Shared::FontId::F_UI))
+	m_ui(this->getFont(Shared::FontId::F_UI)),
+	m_ui2(this->getFont(Shared::FontId::F_UI))
+
 {
 	//Create player
 	this->m_p_player = new GameObjects::Player(this->getTexture(Shared::TextureId::TX_PLAYER), this->getResourceManager());
 	this->m_p_player->SetPosition(sf::Vector2f(0.f, 50.f));
+
+	//Create player2
+	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER), this->getResourceManager());
+	this->m_p_player2->SetPosition(sf::Vector2f(0.f, 500.f));
 
 	//Create background
 	this->FillBackground();
@@ -34,22 +40,34 @@ State::Playing::Playing(Application& application) :
 State::Playing::~Playing()
 {
 	delete this->m_p_player;
+
+	delete this->m_p_player2;
 }
 
 void State::Playing::input()
 {
 	if (!this->gameOver)
 		this->m_p_player->HandleInput(Display::getWindow().getSize());
+
+	if (!this->gameOver)
+		this->m_p_player2->HandleInput(Display::getWindow().getSize());
 }
 
 void State::Playing::update(const float dt)
 {
 	//Game over condition
-	if (this->gameOver && this->m_p_player->isDestoryComplete())
+	if (this->gameOver && this->m_p_player->isDestoryComplete() && this->gameOver && this->m_p_player2->isDestoryComplete())
 	{
-		this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player->getScore()));
+		this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player->getScore(), this->m_p_player2->getScore()));
 		return;
 	}
+
+	////Game over condition for player2
+	//if (this->gameOver && this->m_p_player2->isDestoryComplete())
+	//{
+	//	this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player2->getScore()));
+	//	return;
+	//}
 
 	//Update background objects
 	for (auto it = this->stars.begin(); it != this->stars.end(); ++it)
@@ -64,8 +82,15 @@ void State::Playing::update(const float dt)
 		//Update ui
 		this->m_ui.update(this->m_p_player->getScore(), this->m_p_player->getCurrentHp(), dt);
 
+		//player2
+		this->m_ui.update2(this->m_p_player2->getScore(), this->m_p_player2->getCurrentHp(), dt);
+
 		//update player
 		this->m_p_player->Update(dt, Display::getWindow().getSize());
+
+		//player2
+		this->m_p_player2->Update(dt, Display::getWindow().getSize());
+
 
 		//Spawn an enemy every enemySpawnSeconds interval.
 		if (this->enemySpawnClock.getElapsedTime().asSeconds() >= enemySpawnInterval && this->enemies.size() < this->currentEnemyLimit)
@@ -98,6 +123,7 @@ void State::Playing::draw()
 {
 	//Draw UI
 	this->m_ui.draw();
+	this->m_ui2.draw();
 
 	//Draw background objects
 	sf::RenderStates renderOptions(sf::BlendAlpha);
@@ -107,6 +133,10 @@ void State::Playing::draw()
 	}
 
 	this->m_p_player->Draw(Display::getWindow());
+
+	//for player2
+	this->m_p_player2->Draw(Display::getWindow());
+
 
 	//Draw enemies
 	for (auto it = this->enemies.begin(); it != this->enemies.end(); ++it)
@@ -174,6 +204,13 @@ void State::Playing::HandleCombat()
 		this->gameOver = true;
 	}
 
+	//for player2
+	if (this->m_p_player2->getCurrentHp() <= 0)
+	{
+		this->m_p_player2->Destroy();
+		this->gameOver = true;
+	}
+
 	//Player & enemy collision check
 	auto playerBox = this->m_p_player->getBoundingBox();
 	for (auto it = this->enemies.begin(); it != this->enemies.end(); ++it)
@@ -182,6 +219,19 @@ void State::Playing::HandleCombat()
 		if (enemyBox.intersects(playerBox) && (!(*it).isDestroying() || (*it).isDestroyed()))
 		{
 			this->m_p_player->TakeDamage((*it).getCurrentHp());
+			(*it).TakeDamage((*it).getCurrentHp());
+			break;
+		}
+	}
+
+	//for player2
+	auto playerBox2 = this->m_p_player2->getBoundingBox();
+	for (auto it = this->enemies.begin(); it != this->enemies.end(); ++it)
+	{
+		auto enemyBox = (*it).getBoundingBox();
+		if (enemyBox.intersects(playerBox2) && (!(*it).isDestroying() || (*it).isDestroyed()))
+		{
+			this->m_p_player2->TakeDamage((*it).getCurrentHp());
 			(*it).TakeDamage((*it).getCurrentHp());
 			break;
 		}
@@ -210,6 +260,31 @@ void State::Playing::HandleCombat()
 			}
 		}
 	}
+
+	//for player2
+	//Bullet & enemy collision check
+	for (auto enemy = this->enemies.begin(); enemy != this->enemies.end(); ++enemy)
+	{
+		if (!(*enemy).isDestroying())
+		{
+			if (!this->m_p_player2->getBullets().empty())
+			{
+				for (auto bullet = this->m_p_player2->getBullets().begin(); bullet != this->m_p_player2->getBullets().end(); ++bullet)
+				{
+					if ((*bullet).getBoundingBox().intersects(enemy->getBoundingBox()))
+					{
+						enemy->TakeDamage(this->m_p_player2->getDamage());
+						this->m_p_player2->getBullets().erase(bullet);
+
+						if (enemy->isDestroying() || enemy->isDestroyed())
+							this->m_p_player2->AddScore(5);
+
+						break;
+					}
+				}
+			}
+		}
+	}
 }
 
 
@@ -231,6 +306,22 @@ void State::Playing::ClearObjects()
 		}
 	}
 
+	//Player2 bullet GC
+	if (!this->m_p_player2->getBullets().empty())
+	{
+		for (auto bullet = this->m_p_player2->getBullets().begin(); bullet != this->m_p_player2->getBullets().end(); ++bullet)
+		{
+			if ((bullet->getPosition().x < 0 ||
+				bullet->getPosition().y < 0 ||
+				bullet->getPosition().x > Display::getWindow().getSize().x ||
+				bullet->getPosition().y > Display::getWindow().getSize().y) || this->gameOver)
+			{
+				this->m_p_player2->getBullets().erase(bullet);
+				break;
+			}
+		}
+	}
+
 	//Enemy GC
 	for (auto it = this->enemies.begin(); it != this->enemies.end(); ++it)
 	{
@@ -240,6 +331,7 @@ void State::Playing::ClearObjects()
 			{
 				//If player missed the enemy takes 1 damage
 				this->m_p_player->TakeDamage(1);
+				this->m_p_player2->TakeDamage(1);
 			}
 
 			std::swap(*it, this->enemies.back());

@@ -11,6 +11,10 @@ State::Menu::Menu(Application& application) :
 	this->m_p_player = new GameObjects::Player(this->getTexture(Shared::TextureId::TX_PLAYER), this->getResourceManager());
 	this->m_p_player->SetPosition(sf::Vector2f(0.f, 50.f));
 
+	//Create player2
+	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER), this->getResourceManager());
+	this->m_p_player2->SetPosition(sf::Vector2f(0.f, 50.f));
+
 	//Create background
 	this->FillBackground();
 
@@ -44,6 +48,7 @@ State::Menu::Menu(Application& application) :
 State::Menu::~Menu()
 {
 	delete this->m_p_player;
+	delete this->m_p_player2;
 }
 
 void State::Menu::input()
@@ -65,6 +70,10 @@ void State::Menu::update(const float dt)
 
 	//Update player
 	this->m_p_player->Update(dt, Display::getWindow().getSize());
+
+	//update player 2
+	this->m_p_player2->Update(dt, Display::getWindow().getSize());
+
 	//Animate text
 	if (this->animationClock.getElapsedTime().asSeconds() >= 0.1f)
 	{
@@ -88,6 +97,8 @@ void State::Menu::draw()
 	}
 
 	this->m_p_player->Draw(Display::getWindow());
+	this->m_p_player2->Draw(Display::getWindow());
+
 
 	Display::getWindow().draw(this->m_menuText);
 }

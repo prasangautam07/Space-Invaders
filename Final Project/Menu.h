@@ -24,6 +24,7 @@ namespace State
 		Utils::RandomNumberGenerator rng;
 
 		GameObjects::Player* m_p_player;
+		GameObjects::Player2* m_p_player2;
 
 		sf::Clock animationClock;
 

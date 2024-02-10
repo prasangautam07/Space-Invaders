@@ -15,7 +15,10 @@ namespace State
 
 		virtual void input() = 0;
 		virtual void update(const float dt) = 0;
+
 		virtual void draw() = 0;
+		 void draw2() ;
+
 
 	protected:
 		Application* m_p_application;
