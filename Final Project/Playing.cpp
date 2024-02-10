@@ -56,8 +56,9 @@ void State::Playing::input()
 void State::Playing::update(const float dt)
 {
 	//Game over condition
-	if (this->gameOver && this->m_p_player->isDestoryComplete() && this->gameOver && this->m_p_player2->isDestoryComplete())
+	if (this->gameOver && this->m_p_player->isDestoryComplete() && this->m_p_player2->isDestoryComplete()) 
 	{
+
 		this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player->getScore(), this->m_p_player2->getScore()));
 		return;
 	}

@@ -21,6 +21,7 @@ namespace State
 		sf::Text m_gameOverText;
 		sf::Text m_playerScoreText;
 		sf::Text m_newGameText;
+		sf::Text highScore;
 
 		int m_player2Score;
 

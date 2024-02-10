@@ -13,8 +13,8 @@ GameObjects::Player::Player(sf::Texture const& texture, Utils::Resources const& 
 	score(0),
 	shootTimerMax(8.f),
 	shootTimer(shootTimerMax),
-	scaleX(0.15f),
-	scaleY(0.15f),
+	scaleX(0.2f),
+	scaleY(0.2f),
 	dt(0.f),
 	maxVelocity(10.f),
 	acceleration(0.8f),
@@ -232,17 +232,19 @@ GameObjects::Player2::Player2(sf::Texture const& texture, Utils::Resources const
 	score2(0),
 	shootTimerMax2(8.f),
 	shootTimer2(shootTimerMax2),
-	scaleX2(0.15f),
-	scaleY2(0.15f),
+	scaleX2(0.2f),
+	scaleY2(0.2f),
 	dt(0.f),
 	maxVelocity2(10.f),
 	acceleration2(0.8f),
 	stabilizerForce2(0.4f),
 	m_resources2(resourceManager),
-	m_texture2(texture)
+	m_texture2(resourceManager.textures.getResource(Shared::TextureId::TX_PLAYER2))
 {
 
 	this->m_sprite2.setTexture(this->m_texture2);
+
+
 	this->m_sprite2.setScale(this->scaleX2, this->scaleY2);
 
 	//Player hp bar

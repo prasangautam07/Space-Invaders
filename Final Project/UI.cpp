@@ -10,7 +10,7 @@ GameObjects::UI::UI(sf::Font const& uiFont) :
 	this->m_scoreDisplay.setPosition(5.f, 5.f);
 
 	this->m_score2Display.setFont(this->m_uiFont);
-	this->m_score2Display.setFillColor(sf::Color::White);
+	this->m_score2Display.setFillColor(sf::Color::Blue);
 	this->m_score2Display.setCharacterSize(25);
 	this->m_score2Display.setPosition(1700.f, 5.f);
 }

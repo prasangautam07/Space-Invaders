@@ -24,21 +24,24 @@ State::Menu::Menu(Application& application) :
 
 	this->m_menuText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_menuText.setFillColor(textColor);
-	this->m_menuText.setString("\t\t\t\tPRESS\n");
+	this->m_menuText.setString("FOR PLAYER 1\t\t\t\t\t\t\t\t\t\t\t\t\tFOR PLAYER 2\n");
 
-	std::string additionalText1 = "UP KEY-------->TO MOVE UP";
-	std::string additionalText2 = "DOWN KEY------>TO MOVE DOWN";
-	std::string additionalText3 = "RIGHT KEY----->TO MOVE FORWARD";
-	std::string additionalText4 = "LEFT KEY------>TO MOVE BACKWARD";
-	std::string additionalText5 = "SPACE KEY----->TO FIRE BULLETS";
-	std::string additionalText6 = "'S' KEY------->TO START GAME";
+	std::string additionalText1 = "\t\t\t\t\t\t\t\t\t\t\t\tPRESS";
+	std::string additionalText2 = "'W' KEY------>TO MOVE UP\t\t\t\t\t\t\t    UP KEY--------->TO MOVE UP";
+	std::string additionalText3 = "'S' KEY------>TO MOVE DOWN\t\t\t\t\t\t\tDOWN KEY----->TO MOVE DOWN";
+	std::string additionalText4 = "'D' KEY------>TO MOVE FORWARD\t\t\t\t\t  RIGHT KEY----->TO MOVE FORWARD";
+	std::string additionalText5 = "'A' KEY------>TO MOVE BACKWARD\t\t\t\t\tLEFT KEY------>TO MOVE BACKWARD";
+	std::string additionalText6 = "'F' KEY------>TO FIRE BULLETS\t\t\t\t\t\t  SPACE KEY----->TO FIRE BULLETS";
+	std::string additionalText7 = "'S' KEY------->TO START GAME";
 
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText1);
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText2);
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText3);
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText4);
 	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText5);
-	this->m_menuText.setString(this->m_menuText.getString() + "\n\n" + additionalText6);
+	this->m_menuText.setString(this->m_menuText.getString() + "\n" + additionalText6);
+
+	this->m_menuText.setString(this->m_menuText.getString() + "\n\n" + additionalText7);
 
 	this->m_menuText.setPosition(Display::getWindow().getSize().x / 2.f - this->m_menuText.getGlobalBounds().width / 2.f, Display::getWindow().getSize().y / 2.f - 50.f);
 
