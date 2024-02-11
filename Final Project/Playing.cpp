@@ -6,11 +6,11 @@
 State::Playing::Playing(Application& application) :
 	GameState(application),
 	maxStars(200),
-	maxEnemy(50),
-	currentEnemyLimit(6),
-	enemySpawnInterval(3.f),
-	enemySpawnIntervalMin(1.5f),
-	difficultyIncreaseInterval(10.f),
+	maxEnemy(60),
+	currentEnemyLimit(15),
+	enemySpawnInterval(2.f),
+	enemySpawnIntervalMin(0.5f),
+	difficultyIncreaseInterval(8.f),
 	gameOver(false),
 	m_ui(this->getFont(Shared::FontId::F_UI)),
 	m_ui2(this->getFont(Shared::FontId::F_UI))
@@ -21,7 +21,7 @@ State::Playing::Playing(Application& application) :
 	this->m_p_player->SetPosition(sf::Vector2f(0.f, 50.f));
 
 	//Create player2
-	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER), this->getResourceManager());
+	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER2), this->getResourceManager());
 	this->m_p_player2->SetPosition(sf::Vector2f(0.f, 500.f));
 
 	//Create background
@@ -341,7 +341,7 @@ void State::Playing::ClearObjects()
 		}
 	}
 
-	//Background objects GC
+	//Background objects 
 	for (auto it = this->stars.begin(); it != this->stars.end(); ++it)
 	{
 		if ((*it).getPosition().x < -10.f)

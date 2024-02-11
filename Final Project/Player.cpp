@@ -249,7 +249,7 @@ GameObjects::Player2::Player2(sf::Texture const& texture, Utils::Resources const
 
 	//Player hp bar
 	this->m_healthBar2.setSize(sf::Vector2f(this->m_sprite2.getGlobalBounds().width, 2.f));
-	this->m_healthBar2.setFillColor(sf::Color::White);
+	this->m_healthBar2.setFillColor(sf::Color::Blue);
 
 	//player death sound
 	this->m_player2DeathSound.setBuffer(this->m_resources2.audio.getResource(Shared::SoundId::S_PLAYER_DEATH));
@@ -430,7 +430,7 @@ void GameObjects::Player2::SpawnBullet()
 		boundingBox.left + boundingBox.width,
 		boundingBox.top + boundingBox.height / 2);
 
-	this->m_bullets.emplace_front(&this->m_resources2.textures.getResource(Shared::TextureId::TX_LASER), center, sf::Vector2f(1.f, 0), sf::Vector2f(0, 0), 5.f);
+	this->m_bullets.emplace_front(&this->m_resources2.textures.getResource(Shared::TextureId::TX_LASERBLUE), center, sf::Vector2f(1.f, 0), sf::Vector2f(0, 0), 5.f);
 	this->m_bulletSounds.emplace(this->m_resources2.audio.getResource(Shared::SoundId::S_LASER));
 
 	this->m_bulletSounds.front().setLoop(false);
