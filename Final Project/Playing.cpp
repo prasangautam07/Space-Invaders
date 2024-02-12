@@ -13,7 +13,10 @@ State::Playing::Playing(Application& application) :
 	difficultyIncreaseInterval(8.f),
 	gameOver(false),
 	m_ui(this->getFont(Shared::FontId::F_UI)),
-	m_ui2(this->getFont(Shared::FontId::F_UI))
+	m_ui2(this->getFont(Shared::FontId::F_UI)),
+	gameTimeClock(),
+	totalElapsedTime(sf::Time::Zero),
+	timeLimit(sf::seconds(60.0f))
 
 {
 	//Create player
@@ -55,10 +58,20 @@ void State::Playing::input()
 
 void State::Playing::update(const float dt)
 {
+	totalElapsedTime += gameTimeClock.getElapsedTime();
+	gameTimeClock.restart();
+
+
 	//Game over condition
 	if (this->gameOver && this->m_p_player->isDestoryComplete() && this->m_p_player2->isDestoryComplete()) 
 	{
 
+		this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player->getScore(), this->m_p_player2->getScore()));
+		return;
+	}
+
+	if (totalElapsedTime >= timeLimit)
+	{
 		this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player->getScore(), this->m_p_player2->getScore()));
 		return;
 	}
@@ -81,10 +94,10 @@ void State::Playing::update(const float dt)
 	if (!this->gameOver)
 	{
 		//Update ui
-		this->m_ui.update(this->m_p_player->getScore(), this->m_p_player->getCurrentHp(), dt);
+		this->m_ui.update(this->m_p_player->getScore(), this->m_p_player->getCurrentHp(),totalElapsedTime, dt);
 
 		//player2
-		this->m_ui.update2(this->m_p_player2->getScore(), this->m_p_player2->getCurrentHp(), dt);
+		this->m_ui.update2(this->m_p_player2->getScore(), this->m_p_player2->getCurrentHp(),totalElapsedTime, dt);
 
 		//update player
 		this->m_p_player->Update(dt, Display::getWindow().getSize());
@@ -118,7 +131,26 @@ void State::Playing::update(const float dt)
 
 	//Clear objects
 	this->ClearObjects();
+	displayTimeRemaining();
 }
+
+void State::Playing::displayTimeRemaining()
+{
+	// Calculate remaining time
+	sf::Time remainingTime = timeLimit - totalElapsedTime;
+	int minutes = static_cast<int>(remainingTime.asSeconds()) / 60;
+	int seconds = static_cast<int>(remainingTime.asSeconds()) % 60;
+
+	// Create an sf::Text object to display time
+	sf::Text timeText("Time: " + std::to_string(minutes) + "m " + std::to_string(seconds) + "s", m_uiFont);
+	timeText.setCharacterSize(20);
+	timeText.setPosition(950.f, 10.f);  // Adjust the position as needed
+
+	// Draw timeText on the window
+	Display::getWindow().draw(timeText);
+}
+
+
 
 void State::Playing::draw()
 {

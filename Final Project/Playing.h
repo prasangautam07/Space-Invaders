@@ -6,6 +6,8 @@
 #include "Enemy.h"
 #include "UI.h"
 #include "GameState.h"
+#include<SFML/System/Clock.hpp>
+#include"SFML/System/Time.hpp"
 
 namespace State
 {
@@ -30,6 +32,11 @@ namespace State
 		float difficultyIncreaseInterval;
 		bool gameOver;
 
+		sf::Clock gameTimeClock;
+		sf::Time totalElapsedTime;
+		sf::Time timeLimit;
+		sf::Font m_uiFont;
+
 		Utils::RandomNumberGenerator rng;
 
 		sf::Clock enemySpawnClock;
@@ -51,5 +58,7 @@ namespace State
 		void FillBackground();
 		void HandleCombat();
 		void ClearObjects();
+
+		void displayTimeRemaining();
 	};
 }

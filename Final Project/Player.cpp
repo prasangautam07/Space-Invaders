@@ -17,7 +17,7 @@ GameObjects::Player::Player(sf::Texture const& texture, Utils::Resources const& 
 	scaleY(0.2f),
 	dt(0.f),
 	maxVelocity(10.f),
-	acceleration(0.8f),
+	acceleration(1.2f),
 	stabilizerForce(0.4f),
 	m_resources(resourceManager),
 	m_texture(texture)
@@ -49,7 +49,7 @@ void GameObjects::Player::HandleInput(sf::Vector2u const& windowBounds)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
 	{
 		this->direction.x = 0.f;
-		this->direction.y = -1.f;
+		this->direction.y = -1.5f;
 
 		if (this->currentVelocity.y > -this->maxVelocity && this->direction.y < 0)
 			this->currentVelocity.y += this->direction.y * this->acceleration;
@@ -59,7 +59,7 @@ void GameObjects::Player::HandleInput(sf::Vector2u const& windowBounds)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 	{
 		this->direction.x = 0.f;
-		this->direction.y = 1.f;
+		this->direction.y = 1.5f;
 
 		if (this->currentVelocity.y < this->maxVelocity && this->direction.y > 0)
 			this->currentVelocity.y += this->direction.y * this->acceleration;
@@ -68,7 +68,7 @@ void GameObjects::Player::HandleInput(sf::Vector2u const& windowBounds)
 	//LEFT
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 	{
-		this->direction.x = -1.f;
+		this->direction.x = -1.5f;
 		this->direction.y = 0.f;
 
 		if (this->currentVelocity.x > -this->maxVelocity && this->direction.x < 0)
@@ -78,7 +78,7 @@ void GameObjects::Player::HandleInput(sf::Vector2u const& windowBounds)
 	//RIGHT
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
-		this->direction.x = 1.f;
+		this->direction.x = 1.5f;
 		this->direction.y = 0.f;
 
 		if (this->currentVelocity.x < this->maxVelocity && this->direction.x > 0)
@@ -236,7 +236,7 @@ GameObjects::Player2::Player2(sf::Texture const& texture, Utils::Resources const
 	scaleY2(0.2f),
 	dt(0.f),
 	maxVelocity2(10.f),
-	acceleration2(0.8f),
+	acceleration2(1.2f),
 	stabilizerForce2(0.4f),
 	m_resources2(resourceManager),
 	m_texture2(resourceManager.textures.getResource(Shared::TextureId::TX_PLAYER2))
@@ -269,7 +269,7 @@ void GameObjects::Player2::HandleInput(sf::Vector2u const& windowBounds)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 	{
 		this->direction2.x = 0.f;
-		this->direction2.y = -1.f;
+		this->direction2.y = -1.5f;
 
 		if (this->currentVelocity2.y > -this->maxVelocity2 && this->direction2.y < 0)
 			this->currentVelocity2.y += this->direction2.y * this->acceleration2;
@@ -279,7 +279,7 @@ void GameObjects::Player2::HandleInput(sf::Vector2u const& windowBounds)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 	{
 		this->direction2.x = 0.f;
-		this->direction2.y = 1.f;
+		this->direction2.y = 1.5f;
 
 		if (this->currentVelocity2.y < this->maxVelocity2 && this->direction2.y > 0)
 			this->currentVelocity2.y += this->direction2.y * this->acceleration2;
@@ -288,7 +288,7 @@ void GameObjects::Player2::HandleInput(sf::Vector2u const& windowBounds)
 	//LEFT
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
-		this->direction2.x = -1.f;
+		this->direction2.x = -1.5f;
 		this->direction2.y = 0.f;
 
 		if (this->currentVelocity2.x > -this->maxVelocity2 && this->direction2.x < 0)
@@ -298,7 +298,7 @@ void GameObjects::Player2::HandleInput(sf::Vector2u const& windowBounds)
 	//RIGHT
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
-		this->direction2.x = 1.f;
+		this->direction2.x = 1.5f;
 		this->direction2.y = 0.f;
 
 		if (this->currentVelocity2.x < this->maxVelocity2 && this->direction2.x > 0)

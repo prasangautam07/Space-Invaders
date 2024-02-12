@@ -12,7 +12,7 @@ State::Menu::Menu(Application& application) :
 	this->m_p_player->SetPosition(sf::Vector2f(0.f, 50.f));
 
 	//Create player2
-	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER), this->getResourceManager());
+	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER2), this->getResourceManager());
 	this->m_p_player2->SetPosition(sf::Vector2f(0.f, 50.f));
 
 	//Create background

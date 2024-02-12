@@ -8,9 +8,6 @@
 
 int main()
 {
-    /*std::string name;
-    std::cout << "Enter your name:";
-    std::cin >> name;*/
     // Ensure that application resources will be freed when the user quits.
     {
         Application app;
