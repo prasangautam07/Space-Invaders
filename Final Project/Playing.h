@@ -20,6 +20,8 @@ namespace State
 		void input() override;
 		void update(const float dt) override;
 
+		virtual int getremhp() { return remhp2; }
+
 
 		void draw() override;
 
@@ -36,6 +38,7 @@ namespace State
 		sf::Time totalElapsedTime;
 		sf::Time timeLimit;
 		sf::Font m_uiFont;
+		//sf::Time remainingTime;
 
 		Utils::RandomNumberGenerator rng;
 
@@ -47,6 +50,7 @@ namespace State
 
 		GameObjects::UI m_ui2;
 		GameObjects::Player2* m_p_player2;
+		int remhp2;
 
 		std::vector<GameObjects::Enemy> enemies;
 		std::vector<GameObjects::Enemy> enemyGCList;
@@ -61,4 +65,6 @@ namespace State
 
 		void displayTimeRemaining();
 	};
+
+
 }

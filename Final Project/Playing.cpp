@@ -16,7 +16,7 @@ State::Playing::Playing(Application& application) :
 	m_ui2(this->getFont(Shared::FontId::F_UI)),
 	gameTimeClock(),
 	totalElapsedTime(sf::Time::Zero),
-	timeLimit(sf::seconds(60.0f))
+	timeLimit(sf::seconds(121.0f))
 
 {
 	//Create player
@@ -49,12 +49,15 @@ State::Playing::~Playing()
 
 void State::Playing::input()
 {
+
 	if (!this->gameOver)
 		this->m_p_player->HandleInput(Display::getWindow().getSize());
 
 	if (!this->gameOver)
-		this->m_p_player2->HandleInput(Display::getWindow().getSize());
+	
+	this->m_p_player2->HandleInput(Display::getWindow().getSize());
 }
+
 
 void State::Playing::update(const float dt)
 {
@@ -63,12 +66,12 @@ void State::Playing::update(const float dt)
 
 
 	//Game over condition
-	if (this->gameOver && this->m_p_player->isDestoryComplete() && this->m_p_player2->isDestoryComplete()) 
+	/*if (this->gameOver && (this->m_p_player->isDestoryComplete() && this->m_p_player2->isDestoryComplete())) 
 	{
 
 		this->m_p_application->changeState(std::make_unique<GameOver>(*this->m_p_application, this->m_p_player->getScore(), this->m_p_player2->getScore()));
 		return;
-	}
+	}*/
 
 	if (totalElapsedTime >= timeLimit)
 	{
@@ -231,18 +234,18 @@ void State::Playing::FillBackground()
 
 void State::Playing::HandleCombat()
 {
-	if (this->m_p_player->getCurrentHp() <= 0)
+	if (this->m_p_player->getCurrentHp() <= 0 && this->m_p_player2->getCurrentHp() <= 0)
 	{
 		this->m_p_player->Destroy();
-		this->gameOver = true;
-	}
+		//this->gameOver = true;
 
-	//for player2
-	if (this->m_p_player2->getCurrentHp() <= 0)
-	{
-		this->m_p_player2->Destroy();
-		this->gameOver = true;
 	}
+	//for player2
+	//if (this->m_p_player2->getCurrentHp() <= 0)
+	//{
+	//	this->m_p_player2->Destroy();
+	//	//this->gameOver = true;
+	//}
 
 	//Player & enemy collision check
 	auto playerBox = this->m_p_player->getBoundingBox();
@@ -251,7 +254,8 @@ void State::Playing::HandleCombat()
 		auto enemyBox = (*it).getBoundingBox();
 		if (enemyBox.intersects(playerBox) && (!(*it).isDestroying() || (*it).isDestroyed()))
 		{
-			this->m_p_player->TakeDamage((*it).getCurrentHp());
+			this->m_p_player->AddScore(-5);
+			//this->m_p_player->TakeDamage((*it).getCurrentHp());
 			(*it).TakeDamage((*it).getCurrentHp());
 			break;
 		}
@@ -264,7 +268,8 @@ void State::Playing::HandleCombat()
 		auto enemyBox = (*it).getBoundingBox();
 		if (enemyBox.intersects(playerBox2) && (!(*it).isDestroying() || (*it).isDestroyed()))
 		{
-			this->m_p_player2->TakeDamage((*it).getCurrentHp());
+			this->m_p_player2->AddScore(-5);
+			//this->m_p_player2->TakeDamage((*it).getCurrentHp());
 			(*it).TakeDamage((*it).getCurrentHp());
 			break;
 		}
@@ -363,8 +368,10 @@ void State::Playing::ClearObjects()
 			if (!it->isDestroyed())
 			{
 				//If player missed the enemy takes 1 damage
-				this->m_p_player->TakeDamage(1);
-				this->m_p_player2->TakeDamage(1);
+				/*this->m_p_player->TakeDamage(1);
+				this->m_p_player2->TakeDamage(1);*/
+				this->m_p_player->AddScore(-1);
+				this->m_p_player2->AddScore(-1);
 			}
 
 			std::swap(*it, this->enemies.back());

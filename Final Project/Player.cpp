@@ -180,7 +180,7 @@ void GameObjects::Player::Draw(sf::RenderTarget& target)
 	}
 
 	target.draw(this->m_sprite);
-	target.draw(this->m_healthBar);
+	//target.draw(this->m_healthBar);
 }
 
 void GameObjects::Player::TakeDamage(int amount)
@@ -401,7 +401,7 @@ void GameObjects::Player2::Draw(sf::RenderTarget& target)
 	}
 
 	target.draw(this->m_sprite2);
-	target.draw(this->m_healthBar2);
+	//target.draw(this->m_healthBar2);
 }
 
 void GameObjects::Player2::TakeDamage(int amount)

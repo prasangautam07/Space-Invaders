@@ -25,6 +25,8 @@ namespace State
 
 		GameObjects::Player* m_p_player;
 		GameObjects::Player2* m_p_player2;
+		sf::Texture menu;
+
 
 		sf::Clock animationClock;
 

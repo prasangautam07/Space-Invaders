@@ -3,45 +3,47 @@
 #include "Application.h"
 #include "Display.h"
 
+
 State::GameOver::GameOver(Application& application, int playerScore,int player2Score) :
 	GameState(application),
 	m_playerScore(playerScore),
 	m_player2Score(player2Score)
 {
+
 	this->m_gameOverText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_gameOverText.setFillColor(sf::Color::Red);
-	this->m_gameOverText.setCharacterSize(30);
+	this->m_gameOverText.setCharacterSize(40);
 	this->m_gameOverText.setString("GAME OVER!");
 
 	this->m_playerScoreText.setFont(this->getFont(Shared::FontId::F_UI));
-	this->m_playerScoreText.setFillColor(sf::Color::White);
-	this->m_playerScoreText.setCharacterSize(30);
+	this->m_playerScoreText.setFillColor(sf::Color::Red);
+	this->m_playerScoreText.setCharacterSize(35);
 	this->m_playerScoreText.setString("PLAYER1 SCORE: " + std::to_string(playerScore));
 
 	//player2 score display
 	this->m_player2ScoreText.setFont(this->getFont(Shared::FontId::F_UI));
-	this->m_player2ScoreText.setFillColor(sf::Color::White);
-	this->m_player2ScoreText.setCharacterSize(30);
+	this->m_player2ScoreText.setFillColor(sf::Color::Blue);
+	this->m_player2ScoreText.setCharacterSize(35);
 	this->m_player2ScoreText.setString("\nPLAYER2 SCORE: " + std::to_string(player2Score));
 
 
 	if (player2Score > playerScore) {
 		this->highScore.setFont(this->getFont(Shared::FontId::F_UI));
 		this->highScore.setFillColor(sf::Color::Blue);
-		this->highScore.setCharacterSize(25);
-		this->highScore.setString("      PLAYER 2 WINS");
+		this->highScore.setCharacterSize(35);
+		this->highScore.setString("         PLAYER 2 WINS\n");
 
 	}
 	if (playerScore > player2Score) {
 		this->highScore.setFont(this->getFont(Shared::FontId::F_UI));
 		this->highScore.setFillColor(sf::Color::Red);
-		this->highScore.setCharacterSize(25);
-		this->highScore.setString("      PLAYER 1 WINS");
+		this->highScore.setCharacterSize(35);
+		this->highScore.setString("         PLAYER 1 WINS\n");
 	}
 
 	this->m_newGameText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_newGameText.setFillColor(sf::Color::Red);
-	this->m_newGameText.setCharacterSize(25);
+	this->m_newGameText.setCharacterSize(35);
 	this->m_newGameText.setString("Press 'N' to start new game");
 }
 

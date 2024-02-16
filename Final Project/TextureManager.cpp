@@ -7,6 +7,7 @@ Utils::TextureManager::TextureManager()
 	this->addResource(Shared::TextureId::TX_PLAYER2, "textures/ship2.png");
 	this->addResource(Shared::TextureId::TX_LASER, "textures/laser.png");
 	this->addResource(Shared::TextureId::TX_LASERBLUE, "textures/laserblue.png");
-
 	this->addResource(Shared::TextureId::TX_ENEMY, "textures/rock.png");
+	this->addResource(Shared::TextureId::TX_MENU, "textures/menu.png");
+
 }

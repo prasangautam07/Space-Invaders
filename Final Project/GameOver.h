@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
+#include"Playing.h"
 
 namespace State
 {
@@ -26,5 +27,7 @@ namespace State
 		int m_player2Score;
 
 		sf::Text m_player2ScoreText;
+
 	};
+  
 }

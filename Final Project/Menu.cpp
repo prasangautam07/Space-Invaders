@@ -2,6 +2,8 @@
 #include "Playing.h"
 #include "Display.h"
 #include "Application.h"
+#include"TextureManager.h"
+#include"shared.h"
 
 State::Menu::Menu(Application& application) :
 	GameState(application),
@@ -13,14 +15,16 @@ State::Menu::Menu(Application& application) :
 
 	//Create player2
 	this->m_p_player2 = new GameObjects::Player2(this->getTexture(Shared::TextureId::TX_PLAYER2), this->getResourceManager());
-	this->m_p_player2->SetPosition(sf::Vector2f(0.f, 50.f));
+	this->m_p_player2->SetPosition(sf::Vector2f(0.f, 500.f));
+
+
 
 	//Create background
 	this->FillBackground();
 
 	//Create text
 	sf::Color textColor = sf::Color::Red;
-	textColor.a = 0;
+	textColor.a = 255;
 
 	this->m_menuText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_menuText.setFillColor(textColor);
@@ -104,6 +108,7 @@ void State::Menu::draw()
 
 
 	Display::getWindow().draw(this->m_menuText);
+
 }
 
 void State::Menu::FillBackground()

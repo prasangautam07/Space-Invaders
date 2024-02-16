@@ -3,7 +3,7 @@
 namespace Shared
 {
 	//Resource identifiers
-	enum class TextureId { TX_SPLASH_LOGO = 1, TX_PLAYER, TX_PLAYER2, TX_ENEMY, TX_LASER,TX_LASERBLUE };
+	enum class TextureId { TX_SPLASH_LOGO = 1, TX_PLAYER, TX_PLAYER2, TX_ENEMY, TX_LASER,TX_LASERBLUE,TX_MENU };
 	enum class FontId { F_UI = 1 };
 	enum class SoundId { S_LASER = 1, S_PLAYER_DEATH, S_ENEMY_DEATH, S_GAME_MUSIC };
 
