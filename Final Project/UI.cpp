@@ -35,7 +35,7 @@ void GameObjects::UI::update2(int player2Score, int player2Hp, sf::Time remainin
 {
 	std::string uiString("PLAYER2:\nSCORE: " + std::to_string(player2Score));
 	this->m_score2Display.setString(uiString);
-	time = 120;
+	time = 180;
 	int remainingSeconds = time-static_cast<int>(remainingTime.asSeconds());
 
 	int minutes = remainingSeconds / 60;

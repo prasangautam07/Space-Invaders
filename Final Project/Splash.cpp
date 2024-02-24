@@ -14,20 +14,20 @@ State::Splash::Splash(Application& application) :
 	this->m_logo.setTexture(this->getTexture(Shared::TextureId::TX_SPLASH_LOGO));
 	this->m_logo.setColor(sf::Color(255, 255, 255, 0));
 
-	float scaleFactor = .8f; 
+	float scaleFactor = .5f; 
 	this->m_logo.setScale(scaleFactor, scaleFactor);
 
 	this->m_logo.setPosition(windowCenterH - this->m_logo.getGlobalBounds().width / 2.f, windowCenterV - this->m_logo.getGlobalBounds().height / 1.5f);
 
 
-	sf::Color white = sf::Color::White;
+	/*sf::Color white = sf::Color::White;
 	white.a = 0;
 
 	this->m_brandText.setFont(this->getFont(Shared::FontId::F_UI));
 	this->m_brandText.setFillColor(white);
 	this->m_brandText.setCharacterSize(60);
 	this->m_brandText.setString("PRESENTS");
-	this->m_brandText.setPosition(windowCenterH - this->m_brandText.getGlobalBounds().width / 2, this->m_logo.getGlobalBounds().top + 315.f);
+	this->m_brandText.setPosition(windowCenterH - this->m_brandText.getGlobalBounds().width / 2, this->m_logo.getGlobalBounds().top + 315.f);*/
 
 	this->m_splashClock.restart();
 	this->m_animationClock.restart();
@@ -65,5 +65,5 @@ void State::Splash::update(const float dt)
 void State::Splash::draw()
 {
 	Display::getWindow().draw(this->m_logo);
-	Display::getWindow().draw(this->m_brandText);
+	//Display::getWindow().draw(this->m_brandText);
 }
