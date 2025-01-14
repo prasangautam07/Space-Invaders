@@ -8,7 +8,7 @@ namespace State
 	class Splash : public GameState
 	{
 	public:
-		explicit Splash(Application& application);
+		 Splash(Application& application);
 		~Splash();
 
 		void input() override;

@@ -13,7 +13,7 @@ namespace GameObjects
 	class Player
 	{
 	public:
-		explicit Player(sf::Texture const& texture, Utils::Resources const& resourceManager);
+		 Player(sf::Texture const& texture, Utils::Resources const& resourceManager);
 		~Player();
 
 		void HandleInput(sf::Vector2u const& windowBounds);

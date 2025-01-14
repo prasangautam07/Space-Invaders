@@ -10,8 +10,8 @@ namespace State
 	class GameState
 	{
 	public:
-		explicit GameState(Application& application);
-		virtual ~GameState();
+		 GameState(Application& application);
+		 ~GameState();
 
 		virtual void input() = 0;
 		virtual void update(const float dt) = 0;

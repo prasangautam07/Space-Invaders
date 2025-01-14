@@ -9,7 +9,7 @@ namespace State
 	class GameOver : public GameState
 	{
 	public:
-		explicit GameOver(Application& application, int playerScore,int player2Score);
+	 GameOver(Application& application, int playerScore,int player2Score);
 		~GameOver();
 
 		void input() override;

@@ -7,7 +7,7 @@ namespace GameObjects
 	class Bullet
 	{
 	public:
-		explicit Bullet(
+		 Bullet(
 			sf::Texture const* texture,
 			sf::Vector2f position,
 			sf::Vector2f direction,

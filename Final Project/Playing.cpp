@@ -16,7 +16,7 @@ State::Playing::Playing(Application& application) :
 	m_ui2(this->getFont(Shared::FontId::F_UI)),
 	gameTimeClock(),
 	totalElapsedTime(sf::Time::Zero),
-	timeLimit(sf::seconds(180.0f))
+	timeLimit(sf::seconds(181.0f))
 
 {
 	//Create player

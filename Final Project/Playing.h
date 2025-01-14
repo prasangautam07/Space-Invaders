@@ -14,7 +14,7 @@ namespace State
 	class Playing : public GameState
 	{
 	public:
-		explicit Playing(Application& application);
+		 Playing(Application& application);
 		~Playing();
 
 		void input() override;

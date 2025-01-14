@@ -9,7 +9,7 @@ namespace State
 	class Menu : public GameState
 	{
 	public:
-		explicit Menu(Application& application);
+		 Menu(Application& application);
 		~Menu();
 
 		void input() override;
